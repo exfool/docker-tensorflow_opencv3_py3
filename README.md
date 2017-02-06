@@ -14,6 +14,6 @@ docker pull exfool/tensorflow_opencv3_py2
 ```
 
 ### Current versions
-- [OpenCV: 3.2.0(https://github.com/Itseez/opencv/archive/3.2.0.zip)
+- [OpenCV: 3.2.0](https://github.com/Itseez/opencv/archive/3.2.0.zip)
 - [TensorFlow: 0.12.1](gcr.io/tensorflow/tensorflow:0.12.1)
 - Python: 2.7.6
