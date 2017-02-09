@@ -4,13 +4,6 @@ FROM gcr.io/tensorflow/tensorflow:0.12.1-gpu
 
 MAINTAINER Dmitry Bystritsky <exfool.dev@gmail.com>
 
-# Install TensorFlow GPU version.
-RUN pip --no-cache-dir install \
-    http://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-0.0.0-cp27-none-linux_x86_64.whl
-# --- ~ DO NOT EDIT OR DELETE BETWEEN THE LINES --- #
-
-
-# opencv-3, numpy
 RUN apt-get update && \
         apt-get upgrade -y \
         apt-get install -y \
