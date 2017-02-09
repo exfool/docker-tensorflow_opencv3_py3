@@ -7,6 +7,7 @@ MAINTAINER Dmitry Bystritsky <exfool.dev@gmail.com>
 MAINTAINER Kamal Gupta <kamalgupta308@gmail.com>
 
 RUN apt-get update && \
+        apt-get upgrade -y \
         apt-get install -y \
         build-essential \
         cmake \
@@ -23,7 +24,9 @@ RUN apt-get update && \
         libtiff-dev \
         libjasper-dev \
         libavformat-dev \
-        libpq-dev
+        libpq-dev \
+        docopt \
+        Pillow
 
 RUN wget https://github.com/Itseez/opencv/archive/3.2.0.zip -O /opencv.zip\
 && unzip /opencv.zip -d / \
