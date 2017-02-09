@@ -20,4 +20,4 @@ docker pull exfool/tensorflow_opencv3_py2
 
 ### Related links
 - [Nvidia Docker Hub ](https://hub.docker.com/r/tensorflow/tensorflow/tags/)
-- (Image docker with OpenCV)[https://github.com/kampta/docker-tensorflow-opencv3.1]
+- [Image docker with OpenCV](https://github.com/kampta/docker-tensorflow-opencv3.1)
