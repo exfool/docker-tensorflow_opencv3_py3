@@ -24,9 +24,10 @@ RUN apt-get update && \
         libtiff-dev \
         libjasper-dev \
         libavformat-dev \
-        libpq-dev \
-        docopt \
-        Pillow
+        libpq-dev
+
+RUN pip install docopt \
+                Pillow
 
 RUN wget https://github.com/Itseez/opencv/archive/3.2.0.zip -O /opencv.zip\
 && unzip /opencv.zip -d / \
