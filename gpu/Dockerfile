@@ -1,11 +1,57 @@
-FROM gcr.io/tensorflow/tensorflow:0.12.1
+FROM nvidia/cuda:8.0-cudnn5-devel
 
 # https://github.com/kampta/docker-tensorflow-opencv3.1
 
 MAINTAINER Dmitry Bystritsky <exfool.dev@gmail.com>
 
-MAINTAINER Kamal Gupta <kamalgupta308@gmail.com>
+# tensorflow with GPU
 
+# Pick up some TF dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        build-essential \
+        curl \
+        libfreetype6-dev \
+        libpng12-dev \
+        libzmq3-dev \
+        pkg-config \
+        python \
+        python-dev \
+        rsync \
+        software-properties-common \
+        unzip \
+        && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN curl -O https://bootstrap.pypa.io/get-pip.py && \
+    python get-pip.py && \
+    rm get-pip.py
+
+RUN pip --no-cache-dir install \
+        ipykernel \
+        jupyter \
+        matplotlib \
+        numpy \
+        scipy \
+        sklearn \
+        pandas \
+        Pillow \
+        && \
+    python -m ipykernel.kernelspec
+
+# --- DO NOT EDIT OR DELETE BETWEEN THE LINES --- #
+# These lines will be edited automatically by parameterized_docker_build.sh. #
+# COPY _PIP_FILE_ /
+# RUN pip --no-cache-dir install /_PIP_FILE_
+# RUN rm -f /_PIP_FILE_
+
+# Install TensorFlow GPU version.
+RUN pip --no-cache-dir install \
+    http://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-0.0.0-cp27-none-linux_x86_64.whl
+# --- ~ DO NOT EDIT OR DELETE BETWEEN THE LINES --- #
+
+
+# opencv-3, numpy
 RUN apt-get update && \
         apt-get upgrade -y \
         apt-get install -y \
@@ -54,7 +100,7 @@ RUN wget https://github.com/Itseez/opencv/archive/3.2.0.zip -O /opencv.zip\
 && rm -r /opencv-3.2.0
 
 RUN mkdir /app
-WORKDIR /notebooks/code
+WORKDIR /app
 
 ONBUILD COPY requirements.txt /notebooks/code
 ONBUILD RUN pip install --no-cache-dir -r requirements.txt
