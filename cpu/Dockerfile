@@ -4,8 +4,6 @@ FROM gcr.io/tensorflow/tensorflow:0.12.1
 
 MAINTAINER Dmitry Bystritsky <exfool.dev@gmail.com>
 
-MAINTAINER Kamal Gupta <kamalgupta308@gmail.com>
-
 RUN apt-get update && \
         apt-get upgrade -y \
         apt-get install -y \
