@@ -17,3 +17,7 @@ docker pull exfool/tensorflow_opencv3_py2
 - [OpenCV: 3.2.0](https://github.com/Itseez/opencv/archive/3.2.0.zip)
 - [TensorFlow: 0.12.1](gcr.io/tensorflow/tensorflow:0.12.1)
 - Python: 2.7.6
+
+### Related links
+- [Nvidia Docker Hub ](https://hub.docker.com/r/tensorflow/tensorflow/tags/)
+- (Image docker with OpenCV)[https://github.com/kampta/docker-tensorflow-opencv3.1]
