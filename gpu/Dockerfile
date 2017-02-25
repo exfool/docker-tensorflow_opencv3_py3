@@ -1,4 +1,5 @@
 FROM gcr.io/tensorflow/tensorflow:0.12.1-gpu
+# FROM gcr.io/tensorflow/tensorflow:1.0.0-gpu-py3
 
 # https://github.com/kampta/docker-tensorflow-opencv3.1
 
@@ -51,6 +52,13 @@ RUN wget https://github.com/Itseez/opencv/archive/3.2.0.zip -O /opencv.zip\
 && make install \
 && rm /opencv.zip \
 && rm -r /opencv-3.2.0
+
+RUN git clone https://github.com/aleju/imgaug.git \
+&& cd imgaug \
+&& python setup.py sdist \
+&& pip install dist/imgaug-0.1.tar.gz \
+&& cd .. \
+&& rm -rf /imgaug
 
 RUN mkdir /app
 WORKDIR /app
