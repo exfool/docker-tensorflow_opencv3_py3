@@ -1,4 +1,4 @@
-FROM gcr.io/tensorflow/tensorflow:1.7.0-gpu-py3
+FROM gcr.io/tensorflow/tensorflow:1.7.0-rc0-gpu-py3
 #FROM gcr.io/tensorflow/tensorflow:0.12.1-gpu
 
 # https://github.com/kampta/docker-tensorflow-opencv3.1
