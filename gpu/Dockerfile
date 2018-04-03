@@ -1,4 +1,4 @@
-FROM gcr.io/tensorflow/tensorflow:1.0.1-gpu-py3
+FROM gcr.io/tensorflow/tensorflow:1.7.0-gpu-py3
 #FROM gcr.io/tensorflow/tensorflow:0.12.1-gpu
 
 # https://github.com/kampta/docker-tensorflow-opencv3.1
@@ -26,7 +26,8 @@ RUN apt-get update && \
         libpq-dev
 
 RUN pip3 install docopt \
-                Pillow
+                Pillow \
+                tqdm
 
 RUN wget https://github.com/Itseez/opencv/archive/3.2.0.zip -O /opencv.zip\
 && unzip /opencv.zip -d / \
