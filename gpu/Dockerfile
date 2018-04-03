@@ -1,4 +1,4 @@
-FROM gcr.io/tensorflow/tensorflow:1.7.0-rc0-gpu-py3
+FROM gcr.io/tensorflow/tensorflow:1.7.0-rc0-gpu
 #FROM gcr.io/tensorflow/tensorflow:0.12.1-gpu
 
 # https://github.com/kampta/docker-tensorflow-opencv3.1
@@ -25,7 +25,7 @@ RUN apt-get update && \
         libavformat-dev \
         libpq-dev
 
-RUN pip3 install docopt \
+RUN pip install docopt \
                 Pillow \
                 tqdm
 
@@ -46,18 +46,18 @@ RUN wget https://github.com/Itseez/opencv/archive/3.2.0.zip -O /opencv.zip\
   -DBUILD_TESTS=OFF \
   -DBUILD_PERF_TESTS=OFF \
   -DCMAKE_BUILD_TYPE=RELEASE \
-  -DCMAKE_INSTALL_PREFIX=$(python3 -c "import sys; print(sys.prefix)") \
-  -DPYTHON_EXECUTABLE=$(which python3) \
-  -DPYTHON_INCLUDE_DIR=$(python3 -c "from distutils.sysconfig import get_python_inc; print(get_python_inc())") \
-  -DPYTHON_PACKAGES_PATH=$(python3 -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())") .. \
+  -DCMAKE_INSTALL_PREFIX=$(python -c "import sys; print(sys.prefix)") \
+  -DPYTHON_EXECUTABLE=$(which python) \
+  -DPYTHON_INCLUDE_DIR=$(python -c "from distutils.sysconfig import get_python_inc; print(get_python_inc())") \
+  -DPYTHON_PACKAGES_PATH=$(python -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())") .. \
 && make install \
 && rm /opencv.zip \
 && rm -r /opencv-3.2.0
 
 RUN git clone https://github.com/aleju/imgaug.git \
 && cd imgaug \
-&& python3 setup.py sdist \
-&& pip3 install dist/imgaug-0.2.5.tar.gz \
+&& python setup.py sdist \
+&& pip install dist/imgaug-0.2.5.tar.gz \
 && cd .. \
 && rm -rf /imgaug
 
@@ -65,6 +65,6 @@ RUN mkdir /app
 WORKDIR /app
 
 ONBUILD COPY requirements.txt /notebooks/code
-ONBUILD RUN pip3 install --no-cache-dir -r requirements.txt
+ONBUILD RUN pip install --no-cache-dir -r requirements.txt
 
 ONBUILD COPY . /notebooks/code/
