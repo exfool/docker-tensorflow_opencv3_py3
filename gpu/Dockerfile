@@ -57,7 +57,7 @@ RUN wget https://github.com/Itseez/opencv/archive/3.2.0.zip -O /opencv.zip\
 RUN git clone https://github.com/aleju/imgaug.git \
 && cd imgaug \
 && python3 setup.py sdist \
-&& pip3 install dist/imgaug-0.1.tar.gz \
+&& pip3 install dist/imgaug-0.2.5.tar.gz \
 && cd .. \
 && rm -rf /imgaug
 
